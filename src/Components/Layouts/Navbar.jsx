@@ -21,10 +21,10 @@ const Navbar = () => {
 
                 {/* auth */}
                 <div className='flex space-x-2'>
-                    <Link>
+                    <Link to='/login'>
                     <button className='btn btn-sm'>Login</button>
                     </Link>
-                    <Link>
+                    <Link to='/register'>
                     <button className='btn btn-sm bg-red-600 text-white'>Register</button>
                     </Link>
                 </div>

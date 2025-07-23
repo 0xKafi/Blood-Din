@@ -22,7 +22,7 @@ const Login = () => {
     }
 
     return (
-        <div className='w-11/12 mx-auto h-screen'>
+        <div className='max-w-screen-xl mx-auto min-h-screen'>
             <div className='mx-auto w-full flex justify-center items-center mt-20'>
                 <div className='flex flex-col justify-center items-center py-4 w-sm shadow'>
                     <form onSubmit={handleLogin} className="fieldset bg-white rounded-box w-xs">
