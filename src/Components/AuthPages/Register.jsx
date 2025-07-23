@@ -22,16 +22,19 @@ const Register = () => {
         const district = e.target.district.value;
         const upazila = e.target.upazila.value;
 
-        const obj = {
+        const userObj = {
             name,
             image,
             email,
             password,
             blood_type,
             district,
-            upazila
+            upazila,
         }
-        console.log(obj)
+        userObj.role = 'donor'
+        userObj.status = 'active'
+        
+        console.log(userObj)
         
         const hasUppercase = /[A-Z]/.test(password);
         const hasLowercase = /[a-z]/.test(password);

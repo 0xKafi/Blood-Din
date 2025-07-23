@@ -2,8 +2,20 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div className='max-w-screen-xl mx-auto bg-gray-50 min-h-screen'>
-           
+        <div className='w-full min-h-screen'>
+            {/* banner */}
+           <div className='bg-linear-to-r from-red-900 to-red-950 text-white h-160 flex flex-col text-center justify-center items-center'>
+                <div className='w-11/12'>
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Donate Blood, Save Lives</h1>
+                    <p className="text-md md:text-lg mb-8">Your donation can make a difference in someone's life. Join our community of blood donors and help save
+                    lives in your area.
+                    </p>
+                </div>
+                <div className='flex space-x-5'>
+                    <button className='btn btn-outline'>Join As Donor</button>
+                    <button className='btn'>Search Donors</button>
+                </div>
+           </div>
         </div>
     );
 };
