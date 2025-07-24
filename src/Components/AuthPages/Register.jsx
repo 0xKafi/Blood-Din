@@ -2,14 +2,16 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import AuthContext from '../Auth/AuthContext';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import district from '../../assets/district.json'
 import upazila from '../../assets/upazila.json'
+import axios from 'axios';
 
 const Register = () => {
     const [showPass, setShowPass] = useState(false) 
     const {createUser, updateUserProfile} = useContext(AuthContext)
     const [message, setMessage] = useState(null)
+    const navigate = useNavigate()
 
     const handleSingUp = (e) =>{
         e.preventDefault()
@@ -26,7 +28,6 @@ const Register = () => {
             name,
             image,
             email,
-            password,
             blood_type,
             district,
             upazila,
@@ -63,11 +64,16 @@ const Register = () => {
             photoURL: image
         }
 
+
         createUser(email, password)
         .then(()=>{
             updateUserProfile(profile)
-            .then((result)=>{
-                console.log(result.user)
+            .then(()=>{
+                axios.post('http://localhost:3000/users', userObj)
+                .then((res) => {
+                    console.log(res.data)
+                    navigate('/');
+                })
             })
         })
         .catch((error)=>{

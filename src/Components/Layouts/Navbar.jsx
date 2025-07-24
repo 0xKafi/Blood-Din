@@ -5,7 +5,17 @@ import AuthContext from '../Auth/AuthContext';
 
 
 const Navbar = () => {
-    const {user, loading} = useContext(AuthContext)
+    const {user, loading, signOutUser, setUser} = useContext(AuthContext)
+
+    const handleSignOut=()=>{
+        signOutUser()
+        .then(()=>{
+            setUser(null)
+        })
+        .catch((error)=>{
+            console.log(error.code)
+        })
+    }
 
     return (
         <div className='border-gray-300 border-b py-2'>
@@ -29,11 +39,25 @@ const Navbar = () => {
                         loading ? <span className="loading loading-spinner loading-md"></span>:
                         user?
                         <>
+                        <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="m-1">
                             <div className="avatar">
-                                <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
+                                <div className="ring-red-700  ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
                                     <img src={user.photoURL} />
                                 </div>
                             </div>
+                        </div>
+                        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-auto p-2 shadow-sm">
+                            <li>
+                                <Link to='/dashboard'>
+                                    <button>Dashboard</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <button onClick={handleSignOut}>LogOut</button>
+                            </li>
+                        </ul>
+                        </div>
                         </>:
                         <>
                          <Link to='/login'>
