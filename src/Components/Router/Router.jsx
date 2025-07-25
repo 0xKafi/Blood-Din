@@ -8,10 +8,11 @@ import Dashboard from '../Dashboard/Dashboard';
 import PrivateRoute from '../Auth/PrivateRoute';
 import Profile from '../Dashboard/Pages/Profile';
 import Overview from '../Dashboard/Pages/Overview';
-import AllUsers from '../Dashboard/Pages/Users';
 import Users from '../Dashboard/Pages/Users';
 import BloodDonationRequest from '../Dashboard/Pages/BloodDonationRequest';
 import ContentManagement from '../Dashboard/Pages/ContentManagement';
+import CreateDonationRequest from '../Dashboard/Pages/DonorPages/CreateDonationRequest';
+import MyDonationRequest from '../Dashboard/Pages/DonorPages/MyDonationRequest';
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/content-management',
         Component: ContentManagement
+      },
+      {
+        path: '/dashboard/create-donation-request',
+        Component: CreateDonationRequest
+      },
+      {
+        path: '/dashboard/my-donation-requests',
+        Component: MyDonationRequest
       }
     ]
   }

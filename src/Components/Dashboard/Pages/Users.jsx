@@ -53,13 +53,16 @@ const Users = () => {
         <div className='min-h-screen bg-[#f0f1f7] px-6 pt-6'>
             <h1 className='font-bold text-2xl lg:text-4xl mb-10'>All Users</h1>
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-            <div className='flex justify-end p-5 font-bold'>
-                Filter:
-                <select name="filter" defaultValue='All' onChange={(e)=>handleFilter(e.target.value)}>
-                    <option value="all">All</option>
-                    <option value="active">Active</option>
-                    <option value="blocked">Blocked</option>
-                </select>
+            <div className='flex justify-between p-5 font-bold'>
+                <p>All Users Table</p>
+                <div>
+                    Filter:
+                    <select name="filter" defaultValue='All' onChange={(e)=>handleFilter(e.target.value)}>
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="blocked">Blocked</option>
+                    </select>
+                </div>
             </div>
             <table className="table">
                 {/* head */}
