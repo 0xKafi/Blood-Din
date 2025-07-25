@@ -1,7 +1,8 @@
 import React from 'react';
 import useRole from '../Hooks/useRole';
-import { Link, Outlet } from 'react-router';
+import { Link, Outlet, NavLink } from 'react-router';
 import logo from '../../assets/logo.png';
+import { HeartHandshake, LayoutDashboard, Users, FilePen } from 'lucide-react';
 
 const Dashboard = () => {
     const {role, loading} = useRole()
@@ -13,7 +14,7 @@ const Dashboard = () => {
 
     // if(role === 'admin') return <>admin</>
     // else if(role === 'moderator') return <>moderator</>
-    // if(role === 'donor') return <>donor</>
+
 
 
     return (
@@ -29,7 +30,7 @@ const Dashboard = () => {
             <label htmlFor="dashboard-drawer" className="btn btn-square btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -49,10 +50,16 @@ const Dashboard = () => {
         {/* Overlay on small devices */}
         <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
-        <ul className="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/dashboard/profile">My Profile</Link></li>
-          <li><Link to="/dashboard/settings">Settings</Link></li>
+        <ul className="menu p-6 w-80 min-h-full bg-base-100 text-base-content lg:text-md font-medium space-y-2">
+          <li><NavLink to="/dashboard" end className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><LayoutDashboard size={16} />Dashboard</NavLink></li>
+        {
+            role === "admin" && 
+            <>
+                <li><NavLink to="/dashboard/all-users" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><Users size={16} />All Users</NavLink></li>
+                <li><NavLink to="/dashboard/all-blood-donation-request" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><HeartHandshake size={16} />Blood Donation Request</NavLink></li>
+                <li><NavLink to="/dashboard/content-management" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><FilePen size={16} />Content Management</NavLink></li>
+            </>
+        }
         </ul>
       </div>
     </div>
