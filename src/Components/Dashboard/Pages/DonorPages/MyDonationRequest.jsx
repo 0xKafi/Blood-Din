@@ -24,7 +24,8 @@ const MyDonationRequest = () => {
                 <Table requestData={requestData} refetch={fetchData} />
             </div>
             {
-                
+                <p className={`text-xl text-center ${
+                requestData.length === 0 ? '' : 'hidden'}`}>No Donation Request Found</p>
             }
     </div>
     );

@@ -11,7 +11,7 @@ const Table = ({requestData, refetch}) => {
     const axiosPublic = useAxiosPublic()
 
     const handleDelete=()=>{
-        const id = currentData._id
+        const id = currentData?._id
         console.log("coming")
         axiosPublic.delete(`/delete-request/${id}`)
         .then((res)=>{
@@ -171,6 +171,7 @@ const Table = ({requestData, refetch}) => {
                                     document.getElementById('my_modal_3').showModal()
                                 }} size={20 }></Edit>
                                 <Trash onClick={()=>{
+                                    setCurrentData(data);
                                     document.getElementById('my_modal_5').showModal()
                                 }} id='my_modal_5' size={20}></Trash>
                              </td>  
