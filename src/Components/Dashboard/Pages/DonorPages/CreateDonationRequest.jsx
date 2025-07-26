@@ -36,7 +36,7 @@ const CreateDonationRequest = () => {
                         <input type="email" className="input" defaultValue={donor?.email} name='email' required readOnly placeholder="Email" />
 
                         <label className="label">Name</label>
-                        <input type="text" className="input" defaultValue={donor?.name} required name='userName' readOnly placeholder="Name"/>
+                        <input type="text" className="input" defaultValue={donor?.name} required name='name' readOnly placeholder="Name"/>
 
                         <label className="label">Recipient Name</label>
                         <input type="text" className="input" required name='recipient_name' placeholder="Recipient Name"/>
