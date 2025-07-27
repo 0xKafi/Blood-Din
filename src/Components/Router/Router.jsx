@@ -13,6 +13,7 @@ import BloodDonationRequest from '../Dashboard/Pages/BloodDonationRequest';
 import ContentManagement from '../Dashboard/Pages/ContentManagement';
 import CreateDonationRequest from '../Dashboard/Pages/DonorPages/CreateDonationRequest';
 import MyDonationRequest from '../Dashboard/Pages/DonorPages/MyDonationRequest';
+import CreateBlog from '../Dashboard/Pages/CreateBlog';
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/content-management',
         Component: ContentManagement
+      },
+      {
+        path: '/dashboard/content-management/add-blog',
+        Component: CreateBlog
       },
       {
         path: '/dashboard/create-donation-request',
