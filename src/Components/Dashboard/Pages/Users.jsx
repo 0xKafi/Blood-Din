@@ -1,26 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import React, { useContext } from 'react';
 import { EllipsisVertical, User } from 'lucide-react';
 import axios from 'axios';
+import UserContext from '../../Context/UserContext';
 
 const Users = () => {
-    const axiosPublic = useAxiosPublic()
-    const [users, setUsers] = useState([])
-    const [allUsers, setAllUsers] = useState([])
-
-    const fetchUsers = async () => {
-        try {
-        const res = await axiosPublic('/users');
-        setUsers(res.data);
-        setAllUsers(res.data);
-        } catch (error) {
-        console.log(error.code);
-        }
-    };
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
+    const {users, allUsers, setUsers, fetchUsers} = useContext(UserContext)
 
     const handleStatusChange = (id, newStatus) => {
         const obj = { status: newStatus };
@@ -68,8 +52,8 @@ const Users = () => {
                 {/* head */}
                 <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Role</th>
+                    <th>Donor Info</th>
+                    <th>Current Role</th>
                     <th>Status</th>
                     <th className='text-right'>Action</th>
                 </tr>
@@ -101,6 +85,7 @@ const Users = () => {
                                 }} name="role">
                                     <option value="donor">Donor</option>
                                     <option value="volunteer">Volunteer</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                             </td>
                             <td>
@@ -113,7 +98,7 @@ const Users = () => {
                                     <div tabIndex={0} role="button">
                                     <EllipsisVertical />
                                     </div>
-                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28">
+                                    <ul tabIndex={0} className="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-28">
                                     <li>
                                         <button
                                         className="text-sm"

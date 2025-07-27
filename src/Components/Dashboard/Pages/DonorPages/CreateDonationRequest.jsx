@@ -21,6 +21,8 @@ const CreateDonationRequest = () => {
         axiosPublic.post('/create-donation', data)
         .then((res)=> console.log(res.data))
         .catch((error)=> console.log(error.code))
+
+        e.target.reset()
     };
 
     return (
