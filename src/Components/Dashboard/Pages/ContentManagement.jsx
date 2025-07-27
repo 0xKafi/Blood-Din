@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useRole from '../../Hooks/useRole';
 
 const ContentManagement = () => {
+    const {role} = useRole()
     const [allBlog, setAllBlog] = useState(null);
     const [blogData, setBlogData] = useState(null)
     const axiosSecure = useAxiosSecure();
@@ -23,7 +25,7 @@ const ContentManagement = () => {
 
     const handleStatusChange=(status, id)=>{
         const obj = {status: status}
-        
+
         axiosSecure.patch(`/update-status/${id}`, obj)
         .then((res)=> {
             console.log(res.data)
@@ -31,6 +33,14 @@ const ContentManagement = () => {
         })
         .catch((error)=> console.log(error))
 
+    }
+    const handleDelete=(id)=>{
+        axiosSecure.delete(`/delete-blog/${id}`)
+        .then((res)=> {
+            console.log(res.data)
+            reFetch()
+        })
+        .catch((error)=> console.log(error))
     }
 
     const handleFilter=(keyword)=>{
@@ -66,7 +76,7 @@ const ContentManagement = () => {
                     <tr>
                         <th>Title</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th className={`text-center ${role === 'volunteer' ? 'hidden' : ''}`}>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,12 +87,13 @@ const ContentManagement = () => {
                         <td>
                             {blog.status}
                         </td>
-                        <td>
+                        <td className={`text-center ${role === 'volunteer' ? 'hidden' : ''}`}>
                            {
                             blog.status === 'draft'?
-                            <button onClick={()=> handleStatusChange('published', blog._id)} className='btn btn-ghost'>Publish</button>:
-                            <button onClick={()=> handleStatusChange('draft', blog._id)} className='btn btn-error'>Unpublish</button>
+                            <button onClick={()=> handleStatusChange('published', blog._id)} className='btn btn-success'>Publish</button>:
+                            <button onClick={()=> handleStatusChange('draft', blog._id)} className='btn'>Unpublish</button>
                            }
+                           <button onClick={()=>handleDelete(blog._id)} className='btn btn-error ml-2'>Delete</button>
                         </td>
                         </tr>
                     ))

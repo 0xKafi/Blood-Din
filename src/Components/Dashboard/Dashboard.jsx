@@ -2,7 +2,7 @@ import React from 'react';
 import useRole from '../Hooks/useRole';
 import { Link, Outlet, NavLink } from 'react-router';
 import logo from '../../assets/logo.png';
-import { HeartHandshake, LayoutDashboard, Users, FilePen, User } from 'lucide-react';
+import { HeartHandshake, LayoutDashboard, Users, FilePen, User, Home } from 'lucide-react';
 
 const Dashboard = () => {
     const {role, loading} = useRole()
@@ -67,7 +67,15 @@ const Dashboard = () => {
                 <li><NavLink to="/dashboard/create-donation-request" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><Users size={16} />Create Donation Request</NavLink></li>
             </>
         }
+        {
+            role === "volunteer" && 
+            <>
+                <li><NavLink to="/dashboard/all-blood-donation-request" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><HeartHandshake size={16} />Blood Donation Request</NavLink></li>
+                <li><NavLink to="/dashboard/content-management" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><FilePen size={16} />Content Management</NavLink></li>
+            </>
+        }
         <li><NavLink to="/dashboard/profile" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><User size={16} />Profile</NavLink></li>
+        <li><Link to="/" className="py-2"><Home size={16} />Home</Link></li>
         </ul>
       </div>
     </div>

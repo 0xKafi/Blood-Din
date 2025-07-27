@@ -3,6 +3,7 @@ import AuthContext from '../../Auth/AuthContext';
 import AdminOverview from './AdminOverview';
 import useRole from '../../Hooks/useRole';
 import UserOverview from './DonorPages/UserOverview';
+import VolunteerOverview from './VolunteerPages/VolunteerOverview';
 
 const Overview = () => {
     const {user} = useContext(AuthContext)
@@ -15,6 +16,9 @@ const Overview = () => {
             }
             {
                 role === 'donor' && <UserOverview></UserOverview>
+            }
+            {
+                role === 'volunteer' && <VolunteerOverview></VolunteerOverview>
             }
         </div>
     );

@@ -4,8 +4,10 @@ import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import UserContext from '../../../Context/UserContext';
 import district from '../../../../assets/district.json'
 import upazila from '../../../../assets/upazila.json'
+import useRole from '../../../Hooks/useRole';
 
 const Table = ({requestData, refetch}) => {
+    const {role} = useRole()
     const {donor} = useContext(UserContext)
     const [currentData, setCurrentData] = useState(null)
     const axiosPublic = useAxiosPublic()
@@ -118,6 +120,7 @@ const Table = ({requestData, refetch}) => {
             <div className='flex justify-between p-5 font-bold'>
                 <p>Donation Request Table</p>
                 <div>
+                    {/* to-do fix filter */}
                     Filter:
                     <select name="filter" defaultValue='All' onChange={(e)=>handleFilter(e.target.value)}>
                         <option value="all">All</option>
@@ -127,7 +130,6 @@ const Table = ({requestData, refetch}) => {
                 </div>
             </div>
             <table className="table">
-                {/* head */}
                 <thead>
                 <tr>
                     <th>Recipient Info</th>
@@ -136,7 +138,7 @@ const Table = ({requestData, refetch}) => {
                     <th>Blood Group</th>
                     <th>Status</th>
                     <th>Info</th>
-                    <th className='text-right'>Action</th>
+                    <th className={`text-center ${role === 'volunteer' ? 'hidden' : ''}`}>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -165,7 +167,8 @@ const Table = ({requestData, refetch}) => {
                                 </td>:
                                 <td>-</td>
                              }
-                             <td className='flex justify-end items-center space-x-4'>
+                             {/* to-do update donation status */}
+                             <td className={`text-center ${role === 'volunteer' ? 'hidden' : ''} flex justify-end items-center space-x-4`}>
                                 <Edit onClick={()=>{
                                     setCurrentData(data);
                                     document.getElementById('my_modal_3').showModal()
