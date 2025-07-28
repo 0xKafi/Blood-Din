@@ -10,13 +10,7 @@ const Dashboard = () => {
     if(loading) return <div className='h-screen flex justify-center items-center'>
              <span className="loading loading-spinner loading-xl"></span>
         </div>
-
-
-    // if(role === 'admin') return <>admin</>
-    // else if(role === 'moderator') return <>moderator</>
-
-
-
+  
     return (
     <div className="drawer lg:drawer-open">
       {/* Drawer toggle input */}
