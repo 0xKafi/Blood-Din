@@ -1,16 +1,27 @@
-import React, { useContext, useState } from 'react';
-import { Edit, MapPin, Trash } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Edit, Mail, MapPin, Trash } from 'lucide-react';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
-import UserContext from '../../../Context/UserContext';
 import district from '../../../../assets/district.json'
 import upazila from '../../../../assets/upazila.json'
 import useRole from '../../../Hooks/useRole';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Table = ({requestData, refetch}) => {
     const {role} = useRole()
-    const {donor} = useContext(UserContext)
     const [currentData, setCurrentData] = useState(null)
     const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
+    const [allData, setAllData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
+    useEffect(() => {
+        setAllData(requestData);
+        setFilteredData(requestData); // initialize with all data
+    },[requestData]);
+
+    useEffect(()=>{
+        setAllData(requestData)
+    }, [])
 
     const handleDelete=()=>{
         const id = currentData?._id
@@ -22,9 +33,15 @@ const Table = ({requestData, refetch}) => {
         })
         .catch((error)=> console.log(error))
     }
-    const handleFilter=()=>{
-
+  const handleFilter = (keyword) => {
+    if (keyword === 'all') {
+      setFilteredData(allData); // show all data
+    } else {
+      const filtered = allData.filter(item => item.status === keyword);
+      setFilteredData(filtered);
     }
+  };
+
     const handleUpdate=(e)=>{
         e.preventDefault()
         const form = e.target;
@@ -37,6 +54,14 @@ const Table = ({requestData, refetch}) => {
             refetch()
         })
         .catch((error)=> console.log(error))
+    }
+    const handleRequest=(id, keyword)=>{
+        axiosSecure.patch(`/status-update/${id}`, {status: keyword})
+            .then(res =>{
+                console.log(res.data)
+                refetch()
+            })
+            .catch(error => console.log(error))
     }
 
 
@@ -61,10 +86,10 @@ const Table = ({requestData, refetch}) => {
                         <form onSubmit={handleUpdate} className="fieldset bg-white rounded-box lg:w-md w-xs grid lg:grid-cols-2 gap-2">
                         <div>
                         <label className="label">Email</label>
-                        <input type="email" className="input" defaultValue={donor?.email} name='email' required readOnly placeholder="Email" />
+                        <input type="email" className="input" defaultValue={currentData?.email} name='email' required readOnly placeholder="Email" />
 
                         <label className="label">Name</label>
-                        <input type="text" className="input" defaultValue={donor?.name} required name='name' readOnly placeholder="Name"/>
+                        <input type="text" className="input" defaultValue={currentData?.name} required name='name' readOnly placeholder="Name"/>
 
                         <label className="label">Recipient Name</label>
                         <input type="text" className="input" required defaultValue={currentData?.recipient_name} name='recipient_name' placeholder="Recipient Name"/>
@@ -117,15 +142,16 @@ const Table = ({requestData, refetch}) => {
                     </div>
                 </dialog>
 
-            <div className='flex justify-between p-5 font-bold'>
-                <p>Donation Request Table</p>
+            <div className='flex justify-between p-5 '>
+                <p className='font-bold'>Donation Request Table</p>
                 <div>
-                    {/* to-do fix filter */}
                     Filter:
                     <select name="filter" defaultValue='All' onChange={(e)=>handleFilter(e.target.value)}>
                         <option value="all">All</option>
-                        <option value="active">Active</option>
-                        <option value="blocked">Blocked</option>
+                        <option value="pending">Pending</option>
+                        <option value="inprogress">Inprogress</option>
+                        <option value="canceled">Canceled</option>
+                        <option value="done">Completed</option>
                     </select>
                 </div>
             </div>
@@ -137,13 +163,13 @@ const Table = ({requestData, refetch}) => {
                     <th>Date & Time</th>
                     <th>Blood Group</th>
                     <th>Status</th>
-                    <th>Info</th>
+                    <th>Donor Info</th>
                     <th className={`text-center ${role === 'volunteer' ? 'hidden' : ''}`}>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    requestData?.map(data => <>
+                    filteredData?.map(data => <>
                         <tr>
                             <td>
                                 <p>{data.recipient_name}</p>
@@ -158,17 +184,34 @@ const Table = ({requestData, refetch}) => {
                                 {data.bloodType}
                              </td>
                              <td>
-                                {data.status}
+                                {
+                                    <p className={`badge ${
+                                    data.status === 'pending' ? 'badge-warning' :
+                                    data.status === 'inprogress' ? 'badge-info' :
+                                    data.status === 'canceled' ? 'badge-error' :
+                                    data.status === 'done' ? 'badge-success' :
+                                    ''
+                                    }`}>
+                                    {data.status}
+                                    </p>
+                                }
                              </td>
                              {
                                 data.status === 'inprogress'?
                                 <td>
-
+                                    <p>{data.donor_name}</p>
+                                    <p>{data.donor_email}</p>
                                 </td>:
                                 <td>-</td>
                              }
-                             {/* to-do update donation status */}
-                             <td className={`text-center ${role === 'volunteer' ? 'hidden' : ''} flex justify-end items-center space-x-4`}>
+                             {
+                                data.status === 'inprogress'?
+                                <td>
+                                    <button onClick={()=>handleRequest(data._id, 'canceled')} className='btn btn-secondary mr-1'>Cancel</button>
+                                    <button onClick={()=>handleRequest(data._id, 'done')} className='btn btn-primary'>Done</button>
+                                </td>:<></>
+                             }
+                             <td className={`${role === 'volunteer' ? 'hidden' : ''} flex justify-end items-center space-x-4`}>
                                 <Edit onClick={()=>{
                                     setCurrentData(data);
                                     document.getElementById('my_modal_3').showModal()

@@ -18,11 +18,13 @@ import Blog from '../Pages/Blog';
 import BlogDetails from '../Pages/BlogDetails';
 import BloodDonationRequests from '../Pages/BloodDonationRequests';
 import BloodDonationRequestDetails from '../Pages/BloodDonationRequestDetails';
+import ErrorPage from '../Pages/ErrorPage';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: App,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
         {
             index: true,
@@ -61,6 +63,7 @@ export const router = createBrowserRouter([
     element: <PrivateRoute>
       <Dashboard></Dashboard>
     </PrivateRoute>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,

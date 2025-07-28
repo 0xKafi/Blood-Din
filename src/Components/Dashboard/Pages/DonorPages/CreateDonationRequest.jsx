@@ -6,8 +6,10 @@ import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const CreateDonationRequest = () => {
 
-    const {donor} = useContext(UserContext)
+    const {donor, donorLoading} = useContext(UserContext)
     const axiosPublic = useAxiosPublic()
+
+    if(donorLoading) return <span className="loading loading-spinner loading-md"></span>
 
     const handleSubmit = (e) => {
         e.preventDefault();

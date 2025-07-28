@@ -12,14 +12,18 @@ const BloodDonationRequestDetails = () => {
     const [loading, setLoading] = useState(true)
     const {donor} = useContext(UserContext)
 
-    useEffect(()=>{
+    const reFetch = () =>{
         axiosPublic(`/blood-donation-request/${params.id}`)
-            .then(res =>{
-                console.log(res.data)
-                setData(res.data)
-                setLoading(false)
-            })
-            .catch(error => console.log(error))
+        .then(res =>{
+            console.log(res.data)
+            setData(res.data)
+            setLoading(false)
+        })
+        .catch(error => console.log(error))
+    }
+
+    useEffect(()=>{
+        reFetch()
     }, [])
 
     const handleRequest=(e)=>{
@@ -32,8 +36,7 @@ const BloodDonationRequestDetails = () => {
         axiosSecure.patch(`/add-donor-info/${params.id}`, obj)
             .then(res =>{
                 console.log(res.data)
-                setData(res.data)
-                setLoading(false)
+                reFetch()
             })
             .catch(error => console.log(error))
     }
