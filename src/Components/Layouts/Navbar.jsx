@@ -29,7 +29,7 @@ const Navbar = () => {
                 {/* links */}
                 <div className='hidden lg:flex space-x-10 w-3/5 justify-center'>
                     <NavLink to='/' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Home</NavLink>
-                    <NavLink to='/donation-request' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Donation Request</NavLink>
+                    <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Blood Donation Request</NavLink>
                     <NavLink to='/blog' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Blog</NavLink>
                 </div>
 

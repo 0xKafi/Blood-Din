@@ -23,7 +23,6 @@ const BlogDetails = () => {
         return html.replace(/<[^>]+>/g, '');
     }
 
-    if(loading) return <span className="loading loading-spinner loading-md"></span>
     
     return (
         <div className='min-h-screen bg-[#f0f1f7]'>
