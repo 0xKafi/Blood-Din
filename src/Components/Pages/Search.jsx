@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import district from '../../assets/district.json'
 import upazila from '../../assets/upazila.json'
 import { useLoaderData } from 'react-router';

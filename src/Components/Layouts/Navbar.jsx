@@ -31,6 +31,7 @@ const Navbar = () => {
                     <NavLink to='/' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Home</NavLink>
                     <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Blood Donation Request</NavLink>
                     <NavLink to='/blog' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Blog</NavLink>
+                    <NavLink to='/donate-fund' className={({isActive})=>`${isActive && 'font-medium text-red-600'}`}>Funding Page</NavLink>
                 </div>
 
                 {/* auth */}
