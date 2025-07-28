@@ -19,6 +19,7 @@ import BlogDetails from '../Pages/BlogDetails';
 import BloodDonationRequests from '../Pages/BloodDonationRequests';
 import BloodDonationRequestDetails from '../Pages/BloodDonationRequestDetails';
 import ErrorPage from '../Pages/ErrorPage';
+import Search from '../Pages/Search';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,11 @@ export const router = createBrowserRouter([
         {
           path: '/blood-donation-requests',
           Component: BloodDonationRequests
+        },
+        {
+          path: '/search',
+          Component: Search,
+          loader: ()=>fetch('http://localhost:3000/search-donation-request')
         },
         {
           path: '/blood-donation-request/:id',
