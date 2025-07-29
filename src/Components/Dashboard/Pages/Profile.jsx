@@ -4,6 +4,7 @@ import upazila from '../../../assets/upazila.json'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { EditIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import Loading from '../../Utils/Loading';
 
 const Profile = () => {
     const axiosSecure = useAxiosSecure()
@@ -20,9 +21,7 @@ const Profile = () => {
     },[])
 
     if(loading){
-        return <div className='h-screen flex justify-center items-center'>
-             <span className="loading loading-spinner loading-xl"></span>
-        </div>
+        return <Loading></Loading>
     }
 
     const handleUpdate = (e) =>{

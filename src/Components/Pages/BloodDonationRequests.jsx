@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router';
+import Loading from '../Utils/Loading';
 
 const BloodDonationRequests = () => {
     const axiosPublic = useAxiosPublic()
@@ -17,11 +18,12 @@ const BloodDonationRequests = () => {
         })
         .catch(error => console.log(error))
     }, [])
-    if(loading) return <span className="loading loading-spinner loading-md"></span>
+    if(loading) return <Loading></Loading>
 
     return (
         <div className='bg-[#f0f1f7] min-h-screen'>
-        <div className='mx-auto max-w-screen-xl py-10'>
+        <div className='mx-auto w-11/12 max-w-screen-xl py-10'>
+        <h1 className='mb-5 text-4xl font-bold'>Blood Donation Requests</h1>
             <div className={`overflow-x-auto rounded-box border border-base-content/5 bg-base-100 ${
                 requestData.length === 0 ? 'hidden' : ''}`}>
             <table className="table">

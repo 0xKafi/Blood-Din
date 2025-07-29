@@ -3,13 +3,12 @@ import useRole from '../Hooks/useRole';
 import { Link, Outlet, NavLink } from 'react-router';
 import logo from '../../assets/logo.png';
 import { HeartHandshake, LayoutDashboard, Users, FilePen, User, Home } from 'lucide-react';
+import Loading from '../Utils/Loading';
 
 const Dashboard = () => {
     const {role, loading} = useRole()
 
-    if(loading) return <div className='h-screen flex justify-center items-center'>
-             <span className="loading loading-spinner loading-xl"></span>
-        </div>
+    if(loading) return <Loading></Loading>
   
     return (
     <div className="drawer lg:drawer-open">

@@ -4,13 +4,14 @@ import upazila from '../../../../assets/upazila.json'
 import UserContext from '../../../Context/UserContext';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import toast from 'react-hot-toast';
+import Loading from '../../../Utils/Loading';
 
 const CreateDonationRequest = () => {
 
     const {donor, donorLoading} = useContext(UserContext)
     const axiosPublic = useAxiosPublic()
 
-    if(donorLoading) return <span className="loading loading-spinner loading-md"></span>
+    if(donorLoading) return <Loading></Loading>
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { DollarSign, HeartHandshake, Users } from 'lucide-react';
 import UserContext from '../../Context/UserContext';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Loading from '../../Utils/Loading';
 
 const AdminOverview = () => {
     const {allDonationData, allUsers} = useContext(UserContext)
@@ -14,7 +15,7 @@ const AdminOverview = () => {
         .catch((error)=>console.log(error))
     }, [])
     let amount = 0;
-    if(data == null) return <p>Loading.......</p>
+    if(data == null) return <Loading></Loading>
     else{
         let sum = 0
         data.map(data => sum += data.amount)

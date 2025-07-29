@@ -9,7 +9,7 @@ const Users = () => {
     const handleStatusChange = (id, newStatus) => {
         const obj = { status: newStatus };
         axios.patch(`https://blood-din-server.vercel.app/change-role/${id}`, obj)
-        .then((res) => {
+        .then(() => {
             fetchUsers(); 
         });
     };
@@ -17,7 +17,7 @@ const Users = () => {
     const handleRoleChange = (id, newRole) => {
         const obj = { role: newRole };
         axios.patch(`https://blood-din-server.vercel.app/change-role/${id}`, obj)
-        .then((res) => {
+        .then(() => {
             fetchUsers();
         });
     };

@@ -3,6 +3,7 @@ import StripePayment from './StripePayment';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router';
+import Loading from '../Utils/Loading';
 
 const FundingPage = () => {
     const [amount, setAmount] = useState(0)
@@ -42,7 +43,7 @@ const FundingPage = () => {
             </form>
             </dialog>
 
-            <div className='max-w-screen-lg mx-auto'>
+            <div className='max-w-screen-lg w-11/12 mx-auto'>
                 <h1 className='text-4xl font-bold pt-10'>Funding Page</h1>
                 <div className='flex justify-end'>
                     <button onClick={()=>
@@ -50,7 +51,7 @@ const FundingPage = () => {
                     }className='btn bg-black text-white mt-5'>Donate Fund</button>
                 </div>
                 {
-                    loading? <p>Loading...</p>:
+                    loading? <Loading></Loading>:
                         <div className={`mt-10 overflow-x-auto rounded-box border max-w-screen-lg mx-auto border-base-content/5 bg-base-100 ${
                             data === null ? 'hidden' : ''}`}>
                                 <p className='p-4 font-bold'>Donation History</p>

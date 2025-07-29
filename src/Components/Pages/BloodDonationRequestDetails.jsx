@@ -3,6 +3,7 @@ import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { useParams } from 'react-router';
 import UserContext from '../Context/UserContext';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Loading from '../Utils/Loading';
 
 const BloodDonationRequestDetails = () => {
     const axiosPublic = useAxiosPublic()
@@ -33,15 +34,15 @@ const BloodDonationRequestDetails = () => {
             'status' : 'inprogress'
         }
         axiosSecure.patch(`/add-donor-info/${params.id}`, obj)
-            .then(res =>{
+            .then(() =>{
                 reFetch()
             })
             .catch(error => console.log(error))
     }
 
-    if(loading) return <span className="loading loading-spinner loading-md"></span>
+    if(loading) return <Loading></Loading>
     return (
-        <div className='max-w-screen-xl mx-auto flex justify-center items-center pt-10'>
+        <div className='max-w-screen-xl mx-auto flex justify-center items-center py-10'>
                     <dialog id="my_modal_3" className="modal">
                     <div className="modal-box mx-auto">
                         <form method="dialog">

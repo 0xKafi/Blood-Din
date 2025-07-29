@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 import { useNavigate } from 'react-router';
+import Loading from '../Utils/Loading';
 
 const Blog = () => {
     const axiosPublic = useAxiosPublic()
@@ -27,11 +28,11 @@ const Blog = () => {
 
     return (
         <div className='min-h-screen bg-[#f0f1f7]'>
-            <div className='max-w-screen-xl mx-auto'>
+            <div className='max-w-screen-xl w-11/12 mx-auto'>
                 <h1 className='text-4xl font-bold py-5'>Blogs</h1>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
                 {
-                loading? <p>loading</p>:
+                loading? <Loading></Loading>:
                     blogs?.map((blog) => (
                     <div key={blog._id} className="flex border-base-100 shadow p-4 rounded mb-4 bg-white">
                         <img src={blog.image} alt="" className="rounded w-48 h-48 object-cover mb-2" />

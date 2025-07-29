@@ -85,7 +85,7 @@ const Navbar = () => {
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                         <ul className="menu bg-base-200 text-base-content min-h-full w-auto p-4">
                             <NavLink to='/' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Home</NavLink>
-                            <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'}my-1`}>Blood Donation Request</NavLink>
+                            <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Blood Donation Request</NavLink>
                             <NavLink to='/blog' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Blog</NavLink>
                             <NavLink to='/donate-fund' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Funding Page</NavLink>
                         </ul>
