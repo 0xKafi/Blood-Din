@@ -7,7 +7,7 @@ const useAxiosSecure = () => {
 
   const instance = useMemo(() => {
     return axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://blood-din-server.vercel.app',
       headers: {
         Authorization: `Bearer ${user?.accessToken}`,
       },

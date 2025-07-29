@@ -36,7 +36,6 @@ const Register = () => {
         userObj.role = 'donor'
         userObj.status = 'active'
         
-        console.log(userObj)
         
         const hasUppercase = /[A-Z]/.test(password);
         const hasLowercase = /[a-z]/.test(password);
@@ -70,7 +69,7 @@ const Register = () => {
         .then(()=>{
             updateUserProfile(profile)
             .then(()=>{
-                axios.post('http://localhost:3000/users', userObj)
+                axios.post('https://blood-din-server.vercel.app/users', userObj)
                 .then(() => {
                     toast.success('Account Created!')
                     navigate('/');

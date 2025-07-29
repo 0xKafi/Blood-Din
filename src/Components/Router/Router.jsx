@@ -55,7 +55,7 @@ export const router = createBrowserRouter([
         {
           path: '/search',
           Component: Search,
-          loader: ()=>fetch('http://localhost:3000/search-donation-request')
+          loader: ()=>fetch('https://blood-din-server.vercel.app/search-donation-request')
         },
         {
           path: '/blood-donation-request/:id',

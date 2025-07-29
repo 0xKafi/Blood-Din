@@ -8,18 +8,16 @@ const Users = () => {
 
     const handleStatusChange = (id, newStatus) => {
         const obj = { status: newStatus };
-        axios.patch(`http://localhost:3000/change-role/${id}`, obj)
+        axios.patch(`https://blood-din-server.vercel.app/change-role/${id}`, obj)
         .then((res) => {
-            console.log(res.data);
             fetchUsers(); 
         });
     };
 
     const handleRoleChange = (id, newRole) => {
         const obj = { role: newRole };
-        axios.patch(`http://localhost:3000/change-role/${id}`, obj)
+        axios.patch(`https://blood-din-server.vercel.app/change-role/${id}`, obj)
         .then((res) => {
-            console.log(res.data);
             fetchUsers();
         });
     };

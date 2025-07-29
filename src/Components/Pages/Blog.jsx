@@ -11,7 +11,6 @@ const Blog = () => {
     useEffect(()=>{
         axiosPublic('/get-blogs')
             .then(res =>{
-                console.log(res.data)
                 setBlogs(res.data)
                 setLoading(false)
             })

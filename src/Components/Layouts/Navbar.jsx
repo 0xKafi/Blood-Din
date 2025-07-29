@@ -3,6 +3,7 @@ import logo from '../../assets/logo.png'
 import { Link, NavLink } from 'react-router';
 import AuthContext from '../Auth/AuthContext';
 import toast from 'react-hot-toast';
+import { AlignRight } from 'lucide-react';
 
 
 const Navbar = () => {
@@ -71,7 +72,28 @@ const Navbar = () => {
                         </Link>
                         </>
                     }
+                    <nav className='lg:hidden'>
+                    <div className="drawer drawer-end">
+                    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content">
+                        {/* Page content here */}
+                        <label htmlFor="my-drawer-4" className="drawer-button"> 
+                            <AlignRight size={40}></AlignRight>
+                        </label>
+                    </div>
+                    <div className="drawer-side">
+                        <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                        <ul className="menu bg-base-200 text-base-content min-h-full w-auto p-4">
+                            <NavLink to='/' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Home</NavLink>
+                            <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'}my-1`}>Blood Donation Request</NavLink>
+                            <NavLink to='/blog' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Blog</NavLink>
+                            <NavLink to='/donate-fund' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Funding Page</NavLink>
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
                 </div>
+ 
             </div>
         </div>
     );

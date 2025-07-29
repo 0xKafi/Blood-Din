@@ -13,7 +13,6 @@ const ContentManagement = () => {
     const reFetch=()=>{
     axiosSecure('/get-blog')
         .then((res)=> {
-            console.log(res.data)
             setBlogData(res.data);
             setAllBlog(res.data)
         })

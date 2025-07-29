@@ -50,7 +50,6 @@ const Table = ({requestData, refetch}) => {
 
         axiosPublic.patch(`/update-request/${currentData._id}`, objData )
         .then((res)=>{
-             console.log(res.data)
             refetch()
         })
         .catch((error)=> console.log(error))
@@ -58,7 +57,6 @@ const Table = ({requestData, refetch}) => {
     const handleRequest=(id, keyword)=>{
         axiosSecure.patch(`/status-update/${id}`, {status: keyword})
             .then(res =>{
-                console.log(res.data)
                 refetch()
             })
             .catch(error => console.log(error))

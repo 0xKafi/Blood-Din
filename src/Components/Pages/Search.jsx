@@ -15,7 +15,6 @@ const Search = () => {
         const district = e.target.district.value;
         const upazila = e.target.upazila.value;
 
-        console.log(data, 1);
         const filteredData1 = data?.filter((item) => {
             return (
             (item.bloodType === blood_type) &&
@@ -24,8 +23,7 @@ const Search = () => {
             );
         });
 
-        setFilteredData(filteredData1); // ✅ This updates the UI
-        console.log(filteredData1);
+        setFilteredData(filteredData1);
     };
 
     return (

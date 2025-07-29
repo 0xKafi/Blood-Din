@@ -27,7 +27,7 @@ const CheckoutForm = ({payAmount, refetch}) => {
     obj.amount = payAmount
     obj.date = new Date().toISOString().split('T')[0]
     
-    const { clientSecret } = await fetch("http://localhost:3000/create-payment-intent", {
+    const { clientSecret } = await fetch("https://blood-din-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj)

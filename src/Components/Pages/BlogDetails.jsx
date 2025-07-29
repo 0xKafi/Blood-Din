@@ -11,7 +11,6 @@ const BlogDetails = () => {
     useEffect(()=>{
         axiosPublic(`/blog/${params.id}`)
             .then(res =>{
-                console.log(res.data)
                 setBlog(res.data)
             })
             .catch(error => console.log(error))

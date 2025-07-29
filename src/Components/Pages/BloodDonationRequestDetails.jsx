@@ -15,7 +15,6 @@ const BloodDonationRequestDetails = () => {
     const reFetch = () =>{
         axiosPublic(`/blood-donation-request/${params.id}`)
         .then(res =>{
-            console.log(res.data)
             setData(res.data)
             setLoading(false)
         })
@@ -35,7 +34,6 @@ const BloodDonationRequestDetails = () => {
         }
         axiosSecure.patch(`/add-donor-info/${params.id}`, obj)
             .then(res =>{
-                console.log(res.data)
                 reFetch()
             })
             .catch(error => console.log(error))
