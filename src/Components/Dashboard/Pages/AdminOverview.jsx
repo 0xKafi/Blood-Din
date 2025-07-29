@@ -1,9 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DollarSign, HeartHandshake, Users } from 'lucide-react';
 import UserContext from '../../Context/UserContext';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const AdminOverview = () => {
     const {allDonationData, allUsers} = useContext(UserContext)
+    const [data, setData] = useState(null)
+    const [amount, setAmount] = useState(0)
+    const axiosPublic = useAxiosPublic()
+
+    useEffect(()=>{
+        axiosPublic('/total-fund')
+        .then((res)=> setData(res.data))
+        .catch((error)=>console.log(error))
+    }, [])
+
+    if(data == null) return <p>Loading.......</p>
+    else{
+        let sum = 0
+        data.map(data => sum += data.amount)
+        setAmount(sum/100)
+    }
 
     return (
         <div>
@@ -23,7 +40,7 @@ const AdminOverview = () => {
                     </div>
                     <div>
                         <h2 className="font-semibold text-xl text-gray-700">Total Funding</h2>
-                        <p className="text-xl font-bold text-gray-900">15600$</p>
+                        <p className="text-xl font-bold text-gray-900">{amount}$</p>
                     </div>
                 </div>
 

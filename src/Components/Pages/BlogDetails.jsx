@@ -6,7 +6,6 @@ const BlogDetails = () => {
     const axiosPublic = useAxiosPublic()
     const params = useParams()
     const [blog, setBlog] = useState([])
-    const [loading, setLoading] = useState(true)
     
 
     useEffect(()=>{
@@ -14,7 +13,6 @@ const BlogDetails = () => {
             .then(res =>{
                 console.log(res.data)
                 setBlog(res.data)
-                setLoading(false)
             })
             .catch(error => console.log(error))
     }, [])

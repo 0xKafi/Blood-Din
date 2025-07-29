@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
@@ -10,10 +10,9 @@ import AuthContext from '../Auth/AuthContext';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_public_key);
 
-const CheckoutForm = ({payAmount}) => {
+const CheckoutForm = ({payAmount, refetch}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [success, setSuccess] = useState(false);
   const {user, loading} = useContext(AuthContext)
   const obj = {}
   const axiosPublic = useAxiosPublic()
@@ -25,6 +24,7 @@ const CheckoutForm = ({payAmount}) => {
     obj.name = user.displayName,
     obj.email = user.email,
     obj.amount = payAmount
+    obj.date = new Date().toISOString().split('T')[0]
     
     const { clientSecret } = await fetch("http://localhost:3000/create-payment-intent", {
       method: "POST",
@@ -42,10 +42,11 @@ const CheckoutForm = ({payAmount}) => {
       alert(result.error.message);
     } else {
       if (result.paymentIntent.status === 'succeeded') {
-        setSuccess(true);
+        // to-do toast message
         axiosPublic.post('/save-donation-history', obj)
         .then((res)=>console.log(res.data))
         .catch(error => console.log(error))
+        refetch()
       }
     }
   };
@@ -56,15 +57,14 @@ const CheckoutForm = ({payAmount}) => {
        <CardElement />
       </div>
       <button type="submit" disabled={!stripe} className='btn btn-primary mt-5'>Pay</button>
-      {success && <p>Payment Successful!</p>}
     </form>
   );
 };
 
-export default function StripePayment({amount}) {
+export default function StripePayment({amount, refetch}) {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm  payAmount = {amount}/>
+      <CheckoutForm  payAmount = {amount} refetch = {refetch}/>
     </Elements>
   );
 }
