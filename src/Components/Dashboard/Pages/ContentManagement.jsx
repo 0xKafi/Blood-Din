@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useRole from '../../Hooks/useRole';
+import toast from 'react-hot-toast';
 
 const ContentManagement = () => {
     const {role} = useRole()
@@ -27,20 +28,24 @@ const ContentManagement = () => {
         const obj = {status: status}
 
         axiosSecure.patch(`/update-status/${id}`, obj)
-        .then((res)=> {
-            console.log(res.data)
+        .then(()=> {
+            toast.success(`${status} Successfully!`)
             reFetch()
         })
-        .catch((error)=> console.log(error))
+        .catch((error)=> 
+            toast.error(error.code)
+         )
 
     }
     const handleDelete=(id)=>{
         axiosSecure.delete(`/delete-blog/${id}`)
-        .then((res)=> {
-            console.log(res.data)
+        .then(()=> {
+            toast.error('Blog Deleted Successfully')
             reFetch()
         })
-        .catch((error)=> console.log(error))
+        .catch((error)=> 
+            toast.error(error.code)
+        )
     }
 
     const handleFilter=(keyword)=>{

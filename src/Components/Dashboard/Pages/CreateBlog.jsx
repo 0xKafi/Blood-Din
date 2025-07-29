@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react';
 import JoditEditor from 'jodit-react';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 const CreateBlog = () => {
     const editor = useRef(null);
@@ -20,10 +21,12 @@ const CreateBlog = () => {
         dataObj.status = 'draft'
 
         axiosPublic.post('/add-blog', dataObj)
-        .then((res)=>{
-            console.log(res.data);
+        .then(()=>{
+            toast.success('Blog Added Successfully!')
         })
-        .catch((error)=>console.log(error))
+        .catch((error)=>
+            toast.error(error.code)
+        )
 
         e.target.reset()
     }

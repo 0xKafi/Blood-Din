@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import district from '../../assets/district.json'
 import upazila from '../../assets/upazila.json'
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const [showPass, setShowPass] = useState(false) 
@@ -70,14 +71,14 @@ const Register = () => {
             updateUserProfile(profile)
             .then(()=>{
                 axios.post('http://localhost:3000/users', userObj)
-                .then((res) => {
-                    console.log(res.data)
+                .then(() => {
+                    toast.success('Account Created!')
                     navigate('/');
                 })
             })
         })
         .catch((error)=>{
-            console.log(error.code)
+            toast.error(error.code)
         })
         
     }

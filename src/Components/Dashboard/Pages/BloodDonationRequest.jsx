@@ -12,7 +12,7 @@ const BloodDonationRequest = () => {
                 allDonationData.length === 0 ? 'hidden' : ''}`}>
                 <Table requestData={allDonationData} refetch={fetchAllDonation} />
             </div>
-    </div>
+        </div>
     );
 };
 

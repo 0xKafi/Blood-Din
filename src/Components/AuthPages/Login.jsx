@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link, useLocation, useNavigate, } from 'react-router';
 import AuthContext from '../Auth/AuthContext';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [showPass, setShowPass] = useState(false);
@@ -16,11 +17,11 @@ const Login = () => {
 
         loginUser(email, password)
         .then(()=>{
-        console.log(location)
+            toast.success('Login Successful, Welcome back!')
             navigate(`${location.state ? location.state : '/'}`)
         })
         .catch((error)=>{
-            console.log(error)
+            toast.error(error.code)
         })
     }
 

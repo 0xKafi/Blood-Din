@@ -27,15 +27,17 @@ const FundingPage = () => {
     return (
         <div className='bg-[#f0f1f7] min-h-screen'>
 
-        <dialog id="my_modal_2" className="modal">
+        <dialog id="my_modal_5" className="modal">
             <div className="modal-box">
-                <div className='py-20 w-sm border px-4 rounded-md mt-5'>
+                <div className='w-sm border border-base-300 p-4 rounded-md'>
                     <h1 className='font-medium text-xl py-2'>Simple Stripe Checkout</h1>
-                    <label>Amount</label>
-                    <input type="number"  placeholder='Enter Amount (min: 5$)' className='input mb-1' onChange={(e)=>setAmount(e.target.value*100)} min={5} />
+                    <label className='text-sm text-black/60'>Amount</label>
+                    <br />
+                    <input type="number" required  placeholder='Enter Amount (min: 5$)' className='border p-3 rounded-md w-full mb-1' onChange={(e)=>setAmount(e.target.value*100)} min={5} />
+                    <label className='text-sm text-black/60'>Card Details</label>
                     <StripePayment amount={amount} refetch={refetch} />
                 </div>
-        </div>
+            </div>
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>
@@ -45,7 +47,7 @@ const FundingPage = () => {
                 <h1 className='text-4xl font-bold pt-10'>Funding Page</h1>
                 <div className='flex justify-end'>
                     <button onClick={()=>
-                        document.getElementById('my_modal_2').showModal()
+                        document.getElementById('my_modal_5').showModal()
                     }className='btn bg-black text-white mt-5'>Donate Fund</button>
                 </div>
                 {

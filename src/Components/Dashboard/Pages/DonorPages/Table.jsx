@@ -5,6 +5,7 @@ import district from '../../../../assets/district.json'
 import upazila from '../../../../assets/upazila.json'
 import useRole from '../../../Hooks/useRole';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const Table = ({requestData, refetch}) => {
     const {role} = useRole()
@@ -25,13 +26,12 @@ const Table = ({requestData, refetch}) => {
 
     const handleDelete=()=>{
         const id = currentData?._id
-        console.log("coming")
         axiosPublic.delete(`/delete-request/${id}`)
-        .then((res)=>{
-             console.log(res.data)
+        .then(()=>{
+            toast.success('Donation Request Deleted!')
             refetch()
         })
-        .catch((error)=> console.log(error))
+        .catch((error)=> toast.error(error.code))
     }
   const handleFilter = (keyword) => {
     if (keyword === 'all') {
@@ -207,8 +207,8 @@ const Table = ({requestData, refetch}) => {
                              {
                                 data.status === 'inprogress'?
                                 <td>
-                                    <button onClick={()=>handleRequest(data._id, 'canceled')} className='btn btn-secondary mr-1'>Cancel</button>
-                                    <button onClick={()=>handleRequest(data._id, 'done')} className='btn btn-primary'>Done</button>
+                                    <button onClick={()=>handleRequest(data._id, 'canceled')} className='btn btn-secondary btn-xs mr-1'>Cancel</button>
+                                    <button onClick={()=>handleRequest(data._id, 'done')} className='btn btn-primary btn-xs'>Done</button>
                                 </td>:<></>
                              }
                              <td className={`${role === 'volunteer' ? 'hidden' : ''} flex justify-end items-center space-x-4`}>

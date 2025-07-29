@@ -3,6 +3,7 @@ import district from '../../../assets/district.json'
 import upazila from '../../../assets/upazila.json'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { EditIcon } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const axiosSecure = useAxiosSecure()
@@ -40,10 +41,11 @@ const Profile = () => {
             upazila,
         }
             axiosSecure.patch('/user', userObj)
-            .then((res)=>{
-                console.log(res.data)
+            .then(()=>{
+                toast.success('Profile Updated')
                 setIsDisabled(true)
             })
+            .catch(error => toast.error(error.code))
     }
 
     return (

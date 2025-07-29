@@ -8,6 +8,7 @@ import {
 } from '@stripe/react-stripe-js';
 import AuthContext from '../Auth/AuthContext';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_public_key);
 
 const CheckoutForm = ({payAmount, refetch}) => {
@@ -42,11 +43,10 @@ const CheckoutForm = ({payAmount, refetch}) => {
       alert(result.error.message);
     } else {
       if (result.paymentIntent.status === 'succeeded') {
-        // to-do toast message
+        toast.success('Payment Successful!')
         axiosPublic.post('/save-donation-history', obj)
-        .then((res)=>console.log(res.data))
+        .then(()=>refetch())
         .catch(error => console.log(error))
-        refetch()
       }
     }
   };
@@ -56,7 +56,7 @@ const CheckoutForm = ({payAmount, refetch}) => {
       <div className='border p-4 rounded-md'>
        <CardElement />
       </div>
-      <button type="submit" disabled={!stripe} className='btn btn-primary mt-5'>Pay</button>
+      <button type="submit" disabled={!stripe} className='btn bg-black text-white mt-5'>Pay</button>
     </form>
   );
 };

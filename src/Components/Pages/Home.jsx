@@ -55,7 +55,7 @@ const Home = () => {
       </section>
 
       {/* 📞 Contact Us Section */}
-      <section className="mx-auto max-w-screen-xl py-20 rounded-xl">
+      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white mt-20">
         <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Form */}
@@ -71,13 +71,14 @@ const Home = () => {
           {/* Contact Info */}
           <div className="space-y-4 text-gray-700">
             <p><strong>📞 Phone:</strong> +880 1234 567890</p>
-            <p><strong>📧 Email:</strong> support@bloodlink.org</p>
+            <p><strong>📧 Email:</strong> support@blooddin.org</p>
             <p><strong>📍 Address:</strong> 123 Red Crescent Road, Dhaka, Bangladesh</p>
             <p>Feel free to contact us for any help or inquiries regarding donation or the platform.</p>
           </div>
         </div>
       </section>
-        </div>
+      <div className='py-10'></div>
+      </div>
     );
 };
 

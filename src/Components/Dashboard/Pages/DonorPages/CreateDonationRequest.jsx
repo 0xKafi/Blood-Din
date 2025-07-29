@@ -3,6 +3,7 @@ import district from '../../../../assets/district.json'
 import upazila from '../../../../assets/upazila.json'
 import UserContext from '../../../Context/UserContext';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 const CreateDonationRequest = () => {
 
@@ -21,8 +22,8 @@ const CreateDonationRequest = () => {
         data.req_date = new Date()
 
         axiosPublic.post('/create-donation', data)
-        .then((res)=> console.log(res.data))
-        .catch((error)=> console.log(error.code))
+        .then(()=> toast.success('Donation Request Created!'))
+        .catch((error)=> toast.error(error.code))
 
         e.target.reset()
     };

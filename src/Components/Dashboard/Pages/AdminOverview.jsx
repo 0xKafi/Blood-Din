@@ -6,7 +6,6 @@ import useAxiosPublic from '../../Hooks/useAxiosPublic';
 const AdminOverview = () => {
     const {allDonationData, allUsers} = useContext(UserContext)
     const [data, setData] = useState(null)
-    const [amount, setAmount] = useState(0)
     const axiosPublic = useAxiosPublic()
 
     useEffect(()=>{
@@ -14,12 +13,12 @@ const AdminOverview = () => {
         .then((res)=> setData(res.data))
         .catch((error)=>console.log(error))
     }, [])
-
+    let amount = 0;
     if(data == null) return <p>Loading.......</p>
     else{
         let sum = 0
         data.map(data => sum += data.amount)
-        setAmount(sum/100)
+        amount = sum/100
     }
 
     return (
