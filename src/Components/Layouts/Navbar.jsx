@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className='border-gray-300 border-b py-2'>
             <div className='w-11/12 mx-auto flex justify-between items-center'>
                 {/* logo */}
-                <div className='flex items-center space-x-2 w-1/5'>
+                <div className='flex items-center space-x-2 w-1/2 lg:w-1/5'>
                    <Link to='/'><img className='w-10' src={logo} alt="logo" /></Link>
                     <h1 className='font-bold hidden lg:block lg:text-2xl text-red-600'>Blood Din</h1>
                 </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 </div>
 
                 {/* auth */}
-                <div className='flex space-x-2 justify-end items-center w-1/5'>
+                <div className='flex space-x-2 justify-end items-center w-1/2 lg:w-1/5'>
                     {
                         loading ? <span className="loading loading-spinner loading-md"></span>:
                         user?
