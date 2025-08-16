@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png'
 import { Link, NavLink } from 'react-router';
 import AuthContext from '../Auth/AuthContext';
 import toast from 'react-hot-toast';
-import { AlignRight } from 'lucide-react';
+import { AlignRight, MenuIcon } from 'lucide-react';
 
 
 const Navbar = () => {
@@ -21,8 +21,8 @@ const Navbar = () => {
     }
 
     return (
-        <div className='border-gray-300 border-b py-2'>
-            <div className='w-11/12 mx-auto flex justify-between items-center'>
+        <div className='border-gray-300 border-b py-2 sticky z-50 top-0 bg-white'>
+            <div className='w-11/12 lg:max-w-screen-xl mx-auto flex justify-between items-center'>
                 {/* logo */}
                 <div className='flex items-center space-x-2 w-1/2 lg:w-1/5'>
                    <Link to='/'><img className='w-10' src={logo} alt="logo" /></Link>
@@ -43,8 +43,8 @@ const Navbar = () => {
                         loading ? <span className="loading loading-spinner loading-md"></span>:
                         user?
                         <>
-                        <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="m-1">
+                        <div className="dropdown dropdown-end mr-0">
+                        <div tabIndex={0} role="button">
                             <div className="avatar">
                                 <div className="ring-red-700  ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
                                     <img src={user.photoURL} />
@@ -63,22 +63,22 @@ const Navbar = () => {
                         </ul>
                         </div>
                         </>:
-                        <>
+                        <div className='lg:flex space-x-2 mr-0 hidden'>
                          <Link to='/login'>
                             <button className='btn btn-sm'>Login</button>
                         </Link>
                         <Link to='/register'>
                             <button className='btn btn-sm bg-red-600 text-white'>Register</button>
                         </Link>
-                        </>
+                        </div>
                     }
-                    <nav className='lg:hidden'>
+                    <nav className='lg:hidden ml-2'>
                     <div className="drawer drawer-end">
                     <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
                         {/* Page content here */}
                         <label htmlFor="my-drawer-4" className="drawer-button"> 
-                            <AlignRight size={40}></AlignRight>
+                            <MenuIcon size={40}></MenuIcon>
                         </label>
                     </div>
                     <div className="drawer-side">
@@ -88,6 +88,13 @@ const Navbar = () => {
                             <NavLink to='/blood-donation-requests' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Blood Donation Request</NavLink>
                             <NavLink to='/blog' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Blog</NavLink>
                             <NavLink to='/donate-fund' className={({isActive})=>`${isActive && 'font-medium text-red-600'} my-1`}>Funding Page</NavLink>
+                            {
+                                user? "" :
+                                <>
+                            <Link to='/login'><button className='btn btn-sm w-20 my-1'>Login</button></Link>
+                            <Link to='/register'><button className='btn btn-sm w-20 bg-red-600 text-white'>Register</button></Link>
+                                </>
+                            }
                         </ul>
                     </div>
                     </div>
