@@ -3,9 +3,9 @@ import { NavLink } from 'react-router';
 
 const Footer = () => {
     return (
-        <div className='bg-red-900'>
+        <div className='bg-red-100'>
         <div className='w-11/12 max-w-screen-xl mx-auto'>
-            <footer className="footer flex justify-between bg-red-900 text-neutral-content py-10">
+            <footer className="footer flex justify-between bg-red-100 text-black py-10">
             <aside>
                 <img className='w-15' src="https://i.ibb.co/35jKGwKQ/image.png" alt="" />
                 <p className='font-bold text-lg'>BloodDin Company Ltd.</p>
@@ -42,7 +42,7 @@ const Footer = () => {
             </nav>
         </footer>
         </div>
-        <footer className="footer sm:footer-horizontal footer-center bg-red-950 text-white p-4">
+        <footer className="footer sm:footer-horizontal footer-center bg-red-200 text-black p-4">
             <aside>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved by BloodDin Company Ltd.</p>
             </aside>

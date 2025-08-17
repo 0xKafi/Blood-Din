@@ -4,10 +4,22 @@ import { Search, FileEdit, HeartHandshake, CheckCircle } from 'lucide-react'
 import StripePayment from './StripePayment';
 import Testimonials from '../Sections/Testimonials';
 import QuickStats from '../Sections/Impact';
+import toast from 'react-hot-toast';
 
 const Home = () => {
+    const handleContact=(e)=>{
+      e.preventDefault()
+      toast.success("Will Reach Out Soon!")
+      e.target.reset()
+    }
+
+    const handleNewsletter=(e)=>{
+      e.preventDefault()
+      toast.success("Thanks For Subscribing!")
+      e.target.reset()
+    }
     return (
-        <div className='w-full min-h-screen bg-[#f1f0f7]'>
+        <div className='w-full min-h-screen'>
             {/* banner */}
            <div className='bg-linear-to-r from-red-900 to-red-950 text-white h-170 flex flex-col text-center justify-center items-center'>
                 <div className='w-11/12'>
@@ -22,7 +34,7 @@ const Home = () => {
                 </div>
            </div>
 
-     <section className='mt-20 max-w-screen-xl mx-auto mb-20'>
+     <section className='mt-20 w-11/12 max-w-screen-xl mx-auto mb-20'>
       <h2 className="text-3xl font-bold text-center mb-20 text-red-600">How Donation Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
@@ -47,7 +59,7 @@ const Home = () => {
                 desc: 'After successful donation, mark the request as "Done".',
             },
           ].map((feature, i) => (
-            <div key={i} className="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-lg transition">
+            <div key={i} className="bg-white shadow-sm rounded-xl p-6 text-center border border-base-300 hover:shadow-md transition">
               <div className="flex justify-center mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-600 text-sm">{feature.desc}</p>
@@ -64,10 +76,10 @@ const Home = () => {
          <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
           <div className="grid md:grid-cols-2 gap-10">
             {/* Contact Form */}
-            <form className="space-y-4">
-              <input type="text" placeholder="Your Name" className="w-full px-4 py-2 border rounded-md" />
-              <input type="email" placeholder="Your Email" className="w-full px-4 py-2 border rounded-md" />
-              <textarea rows="5" placeholder="Your Message" className="w-full px-4 py-2 border rounded-md"></textarea>
+            <form onSubmit={handleContact} className="space-y-4">
+              <input type="text" placeholder="Your Name" required className="w-full px-4 py-2 border rounded-md" />
+              <input type="email" placeholder="Your Email" required className="w-full px-4 py-2 border rounded-md" />
+              <textarea rows="5" placeholder="Your Message" required className="w-full px-4 py-2 border rounded-md"></textarea>
               <button type="submit" className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition">
                 Send Message
               </button>
@@ -83,16 +95,16 @@ const Home = () => {
       </section>
 
       {/* newsletter section */}
-      <section class="bg-red-50 py-12 px-6 text-center rounded-2xl shadow">
-        <h2 class="text-2xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
-        <p class="text-gray-600 mb-6">Get updates on blood drives, donor stories, and health tips straight to your inbox.</p>
+      <section className=" py-12 px-6 text-center pb-24">
+        <h2 className="text-2xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
+        <p className="text-gray-600 mb-6">Get updates on blood drives, donor stories, and health tips straight to your inbox.</p>
         
-        <form class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
-          <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 mb-4 sm:mb-0" required></input>
-          <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded-lg sm:rounded-l-none hover:bg-red-700 transition">Subscribe</button>
+        <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
+          <input type="email" placeholder="Enter your email" className="w-full px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 mb-4 sm:mb-0" required></input>
+          <button type="submit" className="bg-red-600 text-white px-6 py-3 rounded-lg sm:rounded-l-none hover:bg-red-700 transition">Subscribe</button>
         </form>
         
-        <p class="text-xs text-gray-500 mt-4">We respect your privacy. No spam, ever.</p>
+        <p className="text-xs text-gray-500 mt-4">We respect your privacy. No spam, ever.</p>
       </section>
 
       </div>

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StripePayment from './StripePayment';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
-import { MapPin } from 'lucide-react';
-import { Link } from 'react-router';
 import Loading from '../Utils/Loading';
 
 const FundingPage = () => {

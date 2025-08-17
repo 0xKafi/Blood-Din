@@ -9,7 +9,7 @@ export default function QuickStats() {
   ];
 
   return (
-    <section className="bg-red-50 py-16 px-6 mb-24">
+    <section className="bg-red-50 py-24 px-6 mb-14">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-red-600 mb-4">
           Together, We’re Making an Impact
