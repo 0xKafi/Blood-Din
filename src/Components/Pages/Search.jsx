@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import district from '../../assets/district.json'
 import upazila from '../../assets/upazila.json'
 import { useLoaderData } from 'react-router';
@@ -8,17 +8,18 @@ import { Link } from 'react-router';
 const Search = () => {
     const data = useLoaderData();
     const [filteredData, setFilteredData] = useState(null)
+    const [districtId, setDistrictId] = useState('1')
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const blood_type = e.target.bloodType.value;
-        const district = e.target.district.value;
+        const districtName = district[districtId]
         const upazila = e.target.upazila.value;
 
         const filteredData1 = data?.filter((item) => {
             return (
             (item.bloodType === blood_type) &&
-            (item.district === district) &&
+            (item.district === districtName) &&
             (item.upazila === upazila)
             );
         });
@@ -46,10 +47,10 @@ const Search = () => {
                         </select>
 
                         <label className="label">Select Recipient District</label>
-                        <select name="district" defaultValue="" className="select" required>
+                        <select name="district" defaultValue="" onChange={(e)=> setDistrictId(e.target.value)} className="select" required>
                         <option value="" disabled>Select District</option>
                         {
-                            district.map(data => <option>{data.name}</option>)
+                            district.map(data => <option key={data.id} value={data.id}>{data.name}</option>)
                         }
                         </select>
 
@@ -57,7 +58,9 @@ const Search = () => {
                         <select name="upazila" defaultValue="" className="select" required>
                         <option value="" disabled>Select Upazila</option>
                         {
-                            upazila.map(data => <option>{data.name}</option>)
+                            upazila.filter(data => data.district_id === districtId).map(newData =>
+                                <option key={newData.id}>{newData.name}</option>
+                            )
                         }
                         </select>
                         </div>

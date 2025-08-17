@@ -4,7 +4,7 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 import AuthContext from '../Auth/AuthContext';
 
 const UserProvider = ({children}) => {
-    const {loading} = useContext(AuthContext)
+    const {user, loading} = useContext(AuthContext)
     const [donorLoading, setDonorLoading] = useState(true)
     const [donor, setDonor] = useState(null)
     const axiosSecure = useAxiosSecure()
@@ -12,9 +12,10 @@ const UserProvider = ({children}) => {
     const [users, setUsers] = useState([])
     const [allUsers, setAllUsers] = useState([])
 
-
+    console.log(user);
+    
     useEffect(()=>{
-        if(!loading){
+        if(user){
             axiosSecure('/user')
             .then((res)=>{
                 setDonor(res.data)
@@ -25,9 +26,11 @@ const UserProvider = ({children}) => {
     }, [loading, axiosSecure])
 
     const fetchAllDonation = () => {
-        axiosSecure('/all-donation-request')
-            .then((res) => setAllDonationData(res.data))
-            .catch((error) => console.log(error));
+        if(user){
+            axiosSecure('/all-donation-request')
+                .then((res) => setAllDonationData(res.data))
+                .catch((error) => console.log(error));
+        }
     };
 
         useEffect(() => {
@@ -37,12 +40,15 @@ const UserProvider = ({children}) => {
         }, [loading]);
 
     const fetchUsers = async () => {
-    try {
-        const res = await axiosSecure('/users');
-            setUsers(res.data);
-            setAllUsers(res.data);
-        } catch (error) {
-            console.log(error.code);
+        if(user){
+            console.log(user)
+            try {
+            const res = await axiosSecure('/users');
+                setUsers(res.data);
+                setAllUsers(res.data);
+            } catch (error) {
+                console.log(error.code);
+            }
         }
     };
 
