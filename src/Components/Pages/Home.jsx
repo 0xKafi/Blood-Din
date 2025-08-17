@@ -20,7 +20,7 @@ const Home = () => {
                 </div>
            </div>
 
-     <section className='mt-20 max-w-screen-xl mx-auto'>
+     <section className='mt-20 max-w-screen-xl mx-auto mb-20'>
       <h2 className="text-3xl font-bold text-center mb-20">How Donation Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
@@ -55,7 +55,7 @@ const Home = () => {
       </section>
 
       {/* 📞 Contact Us Section */}
-      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white mt-20">
+      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white mb-24">
         <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Form */}
@@ -77,7 +77,20 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className='py-10'></div>
+      
+      {/* newsletter section */}
+      <section class="bg-red-50 py-12 px-6 text-center rounded-2xl shadow">
+        <h2 class="text-2xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
+        <p class="text-gray-600 mb-6">Get updates on blood drives, donor stories, and health tips straight to your inbox.</p>
+        
+        <form class="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
+          <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400 mb-4 sm:mb-0" required></input>
+          <button type="submit" class="bg-red-600 text-white px-6 py-3 rounded-lg sm:rounded-l-none hover:bg-red-700 transition">Subscribe</button>
+        </form>
+        
+        <p class="text-xs text-gray-500 mt-4">We respect your privacy. No spam, ever.</p>
+      </section>
+
       </div>
     );
 };

@@ -84,7 +84,7 @@ const Dashboard = () => {
               }
             </ul>
             {/* profile section */}
-            <div className='p-6 flex items-center space-x-2'>
+            <div className='p-2 flex items-center space-x-2 border m-6 rounded-full border-base-300'>
                <div className="dropdown dropdown-right dropdown-top">
                <div tabIndex={0} role="button" className="m-1">
                    <div className="avatar">
@@ -95,9 +95,7 @@ const Dashboard = () => {
                </div>
                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-auto p-2 shadow-sm">
                    <li>
-                       <Link to='/'>
-                           <Link className='flex items-center'><Home size={16} className='mr-2'></Home> Home</Link>
-                       </Link>
+                      <Link to='/' className='flex items-center'><Home size={16} className='mr-2'></Home> Home</Link>
                    </li>
                     <li><NavLink to="/dashboard/profile" className={({isActive})=>`${isActive && 'bg-black/85 text-white'} py-2`}><User size={16} />Profile</NavLink></li>
                    <li>
@@ -105,7 +103,10 @@ const Dashboard = () => {
                    </li>
                </ul>
                </div>
-               <p className='font-normal'>{user.displayName}</p>
+              <div className='ml-2'>
+                <p className='font-normal'>{user.displayName}</p>
+                <p className='font-normal badge badge-primary badge-xs'>{role}</p>
+              </div>
             </div>
         </div>
       </div>
