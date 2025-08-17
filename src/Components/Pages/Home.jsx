@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Search, FileEdit, HeartHandshake, CheckCircle } from 'lucide-react'
 import StripePayment from './StripePayment';
 import Testimonials from '../Sections/Testimonials';
+import QuickStats from '../Sections/Impact';
 
 const Home = () => {
     return (
@@ -22,7 +23,7 @@ const Home = () => {
            </div>
 
      <section className='mt-20 max-w-screen-xl mx-auto mb-20'>
-      <h2 className="text-3xl font-bold text-center mb-20">How Donation Works</h2>
+      <h2 className="text-3xl font-bold text-center mb-20 text-red-600">How Donation Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
@@ -54,32 +55,33 @@ const Home = () => {
           ))}
         </div>
       </section>
-      {/*  */}
+      {/* testimonials */}
       <Testimonials></Testimonials>
+      {/* impact section */}
+      <QuickStats></QuickStats>
       {/* 📞 Contact Us Section */}
-      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white mb-24">
-        <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Contact Form */}
-          <form className="space-y-4">
-            <input type="text" placeholder="Your Name" className="w-full px-4 py-2 border rounded-md" />
-            <input type="email" placeholder="Your Email" className="w-full px-4 py-2 border rounded-md" />
-            <textarea rows="5" placeholder="Your Message" className="w-full px-4 py-2 border rounded-md"></textarea>
-            <button type="submit" className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition">
-              Send Message
-            </button>
-          </form>
-
-          {/* Contact Info */}
-          <div className="space-y-4 text-gray-700">
-            <p><strong>📞 Phone:</strong> +880 1234 567890</p>
-            <p><strong>📧 Email:</strong> support@blooddin.org</p>
-            <p><strong>📍 Address:</strong> 123 Red Crescent Road, Dhaka, Bangladesh</p>
-            <p>Feel free to contact us for any help or inquiries regarding donation or the platform.</p>
+      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white text-red-600 mb-24">
+         <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            {/* Contact Form */}
+            <form className="space-y-4">
+              <input type="text" placeholder="Your Name" className="w-full px-4 py-2 border rounded-md" />
+              <input type="email" placeholder="Your Email" className="w-full px-4 py-2 border rounded-md" />
+              <textarea rows="5" placeholder="Your Message" className="w-full px-4 py-2 border rounded-md"></textarea>
+              <button type="submit" className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition">
+                Send Message
+              </button>
+            </form>
+            {/* Contact Info */}
+            <div className="space-y-4 text-gray-700">
+              <p><strong>📞 Phone:</strong> +880 1234 567890</p>
+              <p><strong>📧 Email:</strong> support@blooddin.org</p>
+              <p><strong>📍 Address:</strong> 123 Red Crescent Road, Dhaka, Bangladesh</p>
+              <p>Feel free to contact us for any help or inquiries regarding donation or the platform.</p>
+            </div>
           </div>
-        </div>
       </section>
-      
+
       {/* newsletter section */}
       <section class="bg-red-50 py-12 px-6 text-center rounded-2xl shadow">
         <h2 class="text-2xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
