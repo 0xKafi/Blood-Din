@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Search, FileEdit, HeartHandshake, CheckCircle } from 'lucide-react'
 import StripePayment from './StripePayment';
+import Testimonials from '../Sections/Testimonials';
 
 const Home = () => {
     return (
@@ -53,7 +54,8 @@ const Home = () => {
           ))}
         </div>
       </section>
-
+      {/*  */}
+      <Testimonials></Testimonials>
       {/* 📞 Contact Us Section */}
       <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white mb-24">
         <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
