@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Search, FileEdit, HeartHandshake, CheckCircle } from 'lucide-react'
-import StripePayment from './StripePayment';
 import Testimonials from '../Sections/Testimonials';
 import QuickStats from '../Sections/Impact';
 import toast from 'react-hot-toast';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
+AOS.init();
 const Home = () => {
     const handleContact=(e)=>{
       e.preventDefault()
@@ -22,13 +24,13 @@ const Home = () => {
         <div className='w-full min-h-screen'>
             {/* banner */}
            <div className='bg-linear-to-r from-red-900 to-red-950 text-white h-170 flex flex-col text-center justify-center items-center'>
-                <div className='w-11/12'>
+                <div data-aos='fade-up' data-aos-duration="1000" className='w-11/12'>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Donate Blood, Save Lives</h1>
                     <p className="text-md md:text-lg mb-8">Your donation can make a difference in someone's life. Join our community of blood donors and help save
                     lives in your area.
                     </p>
                 </div>
-                <div className='flex space-x-5'>
+                <div data-aos='fade-up' data-aos-duration="1000" className='flex space-x-5'>
                     <Link to='/register'><button className='btn btn-outline'>Join As Donor</button></Link> 
                    <Link to='/search'><button className='btn'>Search Donors</button></Link> 
                 </div>
@@ -59,7 +61,7 @@ const Home = () => {
                 desc: 'After successful donation, mark the request as "Done".',
             },
           ].map((feature, i) => (
-            <div key={i} className="bg-white shadow-sm rounded-xl p-6 text-center border border-base-300 hover:shadow-md transition">
+            <div data-aos='fade-left' data-aos-duration="1000" key={i} className="bg-white shadow-sm rounded-xl p-6 text-center border border-base-300 hover:shadow-md transition">
               <div className="flex justify-center mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-600 text-sm">{feature.desc}</p>
@@ -72,7 +74,7 @@ const Home = () => {
       {/* impact section */}
       <QuickStats></QuickStats>
       {/* 📞 Contact Us Section */}
-      <section className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white text-red-600 mb-24">
+      <section data-aos='fade-up' data-aos-duration="1000" className="mx-auto max-w-screen-xl p-10 rounded-xl bg-white text-red-600 mb-24">
          <h2 className="text-3xl font-bold text-center mb-10">Contact Us</h2>
           <div className="grid md:grid-cols-2 gap-10">
             {/* Contact Form */}
@@ -95,8 +97,8 @@ const Home = () => {
       </section>
 
       {/* newsletter section */}
-      <section className=" py-12 px-6 text-center pb-24">
-        <h2 className="text-2xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
+      <section data-aos='fade-up' data-aos-duration="1000" className=" py-12 px-6 text-center pb-24">
+        <h2 className="text-3xl font-bold text-red-600 mb-2">Stay Informed. Save Lives.</h2>
         <p className="text-gray-600 mb-6">Get updates on blood drives, donor stories, and health tips straight to your inbox.</p>
         
         <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row justify-center max-w-md mx-auto">
