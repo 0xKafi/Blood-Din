@@ -43,7 +43,7 @@ const FundingPage = () => {
             </form>
             </dialog>
 
-            <div className='max-w-screen-lg w-11/12 mx-auto'>
+            <div className='max-w-screen-xl w-11/12 mx-auto'>
                 <h1 className='text-4xl font-bold pt-10'>Funding Page</h1>
                 <div className='flex justify-end'>
                     <button onClick={()=>
@@ -52,7 +52,7 @@ const FundingPage = () => {
                 </div>
                 {
                     loading? <Loading></Loading>:
-                        <div className={`mt-10 overflow-x-auto rounded-box border max-w-screen-lg mx-auto border-base-content/5 bg-base-100 ${
+                        <div className={`mt-10 overflow-x-auto rounded-box border max-w-screen-xl mx-auto border-base-content/5 bg-base-100 ${
                             data === null ? 'hidden' : ''}`}>
                                 <p className='p-4 font-bold'>Donation History</p>
                         <table className="table">

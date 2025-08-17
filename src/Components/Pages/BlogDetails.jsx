@@ -25,11 +25,11 @@ const BlogDetails = () => {
 
     
     return (
-        <div className='min-h-screen mb-10 w-11/12 mx-auto'>
+        <div className='mb-10 w-11/12 mx-auto max-w-screen-xl'>
             <div className='pt-10'>
-                <img className='w-sm lg:w-md mx-auto' src={blog.image} alt="" />
-                <div className='max-w-screen-xl mx-auto'>
-                    <h2 className='text-3xl font-bold my-5'>{blog.title}</h2>
+                <img className='h-60 w-60 border-gray-200 border object-cover rounded-xl mx-auto' src={blog.image} alt="" />
+                <div className='max-w-xl mx-auto'>
+                    <h2 className='text-2xl font-bold my-5'>Title: {blog.title}</h2>
                     <content>{stripHtml(blog.content)}</content>
                 </div>
             </div>

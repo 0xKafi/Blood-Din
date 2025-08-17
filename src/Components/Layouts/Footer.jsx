@@ -1,16 +1,24 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+        <div className='bg-red-900'>
+        <div className='w-11/12 max-w-screen-xl mx-auto'>
+            <footer className="footer flex justify-between bg-red-900 text-neutral-content py-10">
             <aside>
                 <img className='w-15' src="https://i.ibb.co/35jKGwKQ/image.png" alt="" />
-                <p>
-                BloodDin Company Ltd.
-                <br />
-                Working for peoples since 2005
+                <p className='font-bold text-lg'>BloodDin Company Ltd.</p>
+                <p className='text-xs opacity-90'>
+                    Working for peoples since 2005
                 </p>
+            </aside>
+            <aside>
+            <h6 className="footer-title">Links</h6>
+                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/blood-donation-requests'>Blood Donation Request</NavLink>
+                    <NavLink to='/blog'>Blog</NavLink>
+                    <NavLink to='/donate-fund'>Funding Page</NavLink>
             </aside>
             <nav>
             <h6 className="footer-title">Social</h6>
@@ -33,12 +41,13 @@ const Footer = () => {
             </div>
             </nav>
         </footer>
-        <footer className="footer sm:footer-horizontal footer-center bg-black text-white p-4">
-        <aside>
-            <p>Copyright © {new Date().getFullYear()} - All right reserved by BloodDin Company Ltd.</p>
-        </aside>
-        </footer>
         </div>
+        <footer className="footer sm:footer-horizontal footer-center bg-red-950 text-white p-4">
+            <aside>
+                <p>Copyright © {new Date().getFullYear()} - All right reserved by BloodDin Company Ltd.</p>
+            </aside>
+        </footer>
+    </div>
     );
 };
 
